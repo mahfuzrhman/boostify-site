@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Boostify Store</title>
+</head>
+<body>
+
+<h1>🚀 Boostify Store</h1>
+<div id="products"></div>
+
+<script>
+fetch('products.json')
+.then(res => res.json())
+.then(data => {
+  let html = '';
+  data.forEach(p => {
+    html += `<div><h3>${p.name}</h3><p>${p.price}</p></div>`;
+  });
+  document.getElementById("products").innerHTML = html;
+});
+</script>
+
+</body>
+</html>
