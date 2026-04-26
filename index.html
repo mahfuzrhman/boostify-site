@@ -2,22 +2,107 @@
 <html>
 <head>
   <title>Boostify Store</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      margin: 0;
+    }
+
+    header {
+      background: #020617;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      margin: 15px;
+      width: 260px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .price {
+      color: #22c55e;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    input {
+      width: 80px;
+      padding: 5px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      background: #e11d48;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #be123c;
+    }
+  </style>
 </head>
+
 <body>
 
-<h1>🚀 Boostify Store</h1>
-<div id="products"></div>
+<header>🚀 Boostify Social Store</header>
+
+<div class="container" id="products"></div>
 
 <script>
 fetch('products.json')
 .then(res => res.json())
 .then(data => {
   let html = '';
+
   data.forEach(p => {
-    html += `<div><h3>${p.name}</h3><p>${p.price}</p></div>`;
+    html += `
+      <div class="card">
+        <h3>${p.name}</h3>
+        <p class="price">${p.price}</p>
+
+        <input type="number" value="1000" min="1000" step="1000">
+
+        <button onclick="order('${p.name}', this)">
+          Buy Now
+        </button>
+      </div>
+    `;
   });
+
   document.getElementById("products").innerHTML = html;
 });
+
+function order(service, btn){
+  let qty = btn.parentElement.querySelector("input").value;
+  let link = prompt("Enter your link:");
+
+  if(link){
+    alert("Order Placed!\nService: " + service + "\nQty: " + qty + "\nLink: " + link);
+  }
+}
 </script>
 
 </body>
