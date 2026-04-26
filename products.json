@@ -1,10 +1,16 @@
 [
   {
+    "category": "YouTube",
     "name": "YouTube Views",
-    "price": "₹50 / 1K"
+    "price": "₹50 / 1K",
+    "cost": 50,
+    "desc": "⚡ Instant | 🔁 30 Days Refill"
   },
   {
+    "category": "Instagram",
     "name": "Instagram Followers",
-    "price": "₹120 / 1K"
+    "price": "₹120 / 1K",
+    "cost": 120,
+    "desc": "💯 Real | ♾ Lifetime Refill"
   }
 ]
