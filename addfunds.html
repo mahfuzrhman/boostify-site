@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body style="text-align:center; font-family:Arial; background:#0f172a; color:white;">
+
+<h2>Add Funds 💰</h2>
+
+<p>Scan QR and Pay</p>
+
+<img src="https://via.placeholder.com/200" alt="QR">
+
+<br><br>
+
+<input type="number" id="amt" placeholder="Enter Amount">
+
+<br><br>
+
+<button onclick="add()">Submit</button>
+
+<script>
+function add(){
+  let amt = document.getElementById("amt").value;
+  let bal = localStorage.getItem("bal") || 0;
+
+  bal = parseInt(bal) + parseInt(amt);
+  localStorage.setItem("bal", bal);
+
+  alert("Funds Added (Demo) ✅");
+  window.location="index.html";
+}
+</script>
+
+</body>
+</html>
