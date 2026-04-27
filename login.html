@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Boostify</title>
+</head>
+
+<body style="text-align:center; font-family:Arial; background:#0f172a; color:white;">
+
+<h2>Login / Signup</h2>
+
+<input type="email" id="email" placeholder="Email"><br><br>
+<input type="password" id="pass" placeholder="Password"><br><br>
+
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+
+<br><br>
+
+<button onclick="googleLogin()">Login with Google</button>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+// ✅ TERA ORIGINAL CONFIG (set kar diya)
+const firebaseConfig = {
+  apiKey: "AIzaSyDHuzBEYqz65P3h2h1IMz10Jq2mRCP_sU8",
+  authDomain: "boostify-panel-9e19a.firebaseapp.com",
+  projectId: "boostify-panel-9e19a",
+  storageBucket: "boostify-panel-9e19a.firebasestorage.app",
+  messagingSenderId: "1628155956",
+  appId: "1:1628155956:web:cfcbc58682bd337d80da61",
+  measurementId: "G-6ZCHCMJ7X1"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// 🔥 Signup
+window.signup = function(){
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("pass").value;
+
+  createUserWithEmailAndPassword(auth, email, pass)
+  .then(()=> alert("Signup Success ✅"))
+  .catch(e=>alert(e.message));
+}
+
+// 🔥 Login
+window.login = function(){
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("pass").value;
+
+  signInWithEmailAndPassword(auth, email, pass)
+  .then(()=> {
+    alert("Login Success ✅");
+    window.location="index.html";
+  })
+  .catch(e=>alert(e.message));
+}
+
+// 🔥 Google Login
+window.googleLogin = function(){
+  const provider = new GoogleAuthProvider();
+
+  signInWithPopup(auth, provider)
+  .then(()=> {
+    alert("Google Login Success ✅");
+    window.location="index.html";
+  })
+  .catch(e=>alert(e.message));
+}
+</script>
+
+</body>
+</html>
